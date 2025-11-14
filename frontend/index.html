@@ -1,87 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Diabetes Diagnostic Tool</title>
-        <link rel="stylesheet" href="styles.css">
-        <script>
-            //functions runs when user submits the form
-            async function sendData(event) {
-                event.preventDefault(); // prevents page from reloading
-                //data collection form
-                const form = event.target;
-                const btn = form.querySelector('button[type="submit"]');
-                const out = document.getElementById('result');
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Diagnostic Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Diabetes Diagnostic Tool</h1>
+    </header>
 
-                btn.disabled = true;                
-                //collects values (names and ids match the inputs below)
-                const data = {
-                    Pregnancies: form.pregnancies.value,
-                    Glucose: form.glucose.value,
-                    BloodPressure: form.bloodPressure.value,
-                    SkinThickness: form.skinThickness.value,
-                    Insulin: form.insulin.value,
-                    BMI: form.bmi.value,
-                    DiabetesPedigreeFunction: form.dpf.value,
-                    Age: form.age.value
-                };
+    <main>
+        <!--
+        HTML form for collecting patient data.
+        Each of the inputs is a feature used by the ML Model
+        When the form is submitted the sendData(event) function defined in app.js is triggered
+        instead of needing a page reload.
+        -->
 
+        <form onsubmit="sendData(event)">
+            <label for="pregnancies">Number of Pregnancies</label><br>
+            <input type="number" id="pregnancies" name="pregnancies" step="any" required><br><br>
+            
+            <label for="glucose">Glucose Level</label><br>
+            <input type="number" id="glucose" name="glucose" step="any" required><br><br>
 
-                try {
-                    const response = await fetch('http://localhost:8000/predict', {
-                        method: 'POST',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify(data)
-                    });
+            <label for="bloodPressure">Blood Pressure</label><br>
+            <input type="number" id="bloodPressure" name="bloodPressure" step="any" required><br><br>
 
-                    const result = await response.json();
-                    out.textContent = JSON.stringify(data, null, 2);
-                    } catch (err) {
-                    out.textContent = JSON.stringify(result, null, 2);
-                    } finally {
-                    btn.disabled = false;                    
-                }
-            }
+            <label for="skinThickness">Skin Thickness</label><br>
+            <input type="number" id="skinThickness" name="skinThickness" step="any" required><br><br>
+         
+            <label for="insulin">Insulin Level</label><br>
+            <input type="number" id="insulin" name="insulin" step="any" required><br><br>
+          
+            <label for="bmi">Body Mass Index</label><br>
+            <input type="number" id="bmi" name="bmi" step="any" required><br><br>
+          
+            <label for="dpf">Diabetes Pedigree Function</label><br>
+            <input type="number" id="dpf" name="dpf" step="any" required><br><br>
+          
+            <label for="age">Age</label><br>
+            <input type="number" id="age" name="age" step="any" required><br><br>
+          
+            <button type="submit">Submit</button>
+        </form>
 
-        </script>
-    </head>
-    <body>
-        <header>
-            <h1>Welcome to the Diabetes Diagnostic Tool</h1>
-        </header>
+        <h3>Result</h3>
+        <pre id="result">Fill the form and click Submit.</pre>
+    </main>
 
-        <main>
-            <!--Form is here-->
-            <form onsubmit="sendData(event)">
-                <label for="pregnancies">Number of Pregnancies</label><br>
-                <input type="number" id="pregnancies" name="pregnancies" step="any"><br><br>
-                
-                <label for="glucose">Glucose Level</label><br>
-                <input type="number" id="glucose" name="glucose" step="any"><br><br>
-
-                <label for="bloodPressure">Blood Pressure</label><br>
-                <input type="number" id="bloodPressure" name="bloodPressure" step="any"><br><br>
-
-                <label for="SkinThickness">Skin Thickness</label><br>
-                <input type="number" id="skinThickness" name="skinThickness" step="any"><br><br>
-             
-                 <label for="insulin">Insulin Level</label><br>
-                 <input type="number" id="insulin" name="insulin" step="any" required><br><br>
-              
-                <label for="bmi">Body Mass Index</label><br>
-                <input type="number" id="bmi" name="bmi" step="any" required><br><br>
-              
-                <label for="dpf">Diabetes Pedigree Function</label><br>
-                 <input type="number" id="dpf" name="dpf" step="any" required><br><br>
-              
-                 <label for="age">Age</label><br>
-                 <input type="number" id="age" name="age" step="any" required><br><br>
-              
-                  <button type="submit">Submit</button>
-            </form>
-
-            <h3>Preview (What will be sent to the backend)</h3>
-            <pre id="result">Fill the form and click Submit.</pre>
-        </main>
-    </body>
+    <!-- Loads the external JS file containing the sendData() function -->
+    <script src="app.js"></script>
+</body>
 </html>
