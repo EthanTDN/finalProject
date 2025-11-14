@@ -11,9 +11,9 @@
                 //data collection form
                 const form = event.target;
                 const btn = form.querySelector('button[type="submit"]');
-                btn.disabled = true;
                 const out = document.getElementById('result');
-                
+
+                btn.disabled = true;                
                 //collects values (names and ids match the inputs below)
                 const data = {
                     Pregnancies: form.pregnancies.value,
@@ -27,22 +27,21 @@
                 };
 
 
-                out.textContent = JSON.stringify(data, null, 2)
-                btn.disabled = false;
+                try {
+                    const response = await fetch('http://localhost:8000/predict', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(data)
+                    });
 
-                //sends to backend (we will change this URL to match the API later)
-                /*
-                const response = await fetch('', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(data)
-                });
+                    const result = await response.json();
+                    out.textContent = JSON.stringify(data, null, 2);
+                    } catch (err) {
+                    out.textContent = JSON.stringify(result, null, 2);
+                    } finally {
+                    btn.disabled = false;                    
+                }
 
-                const result = await response.json();
-                document.getElementById('result').textContent = SJON.stringify(result, null, 2)
-                */
-            }
-                
         </script>
     </head>
     <body>
