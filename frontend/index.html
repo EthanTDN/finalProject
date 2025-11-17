@@ -10,41 +10,35 @@
         <h1>Welcome to the Diabetes Diagnostic Tool</h1>
     </header>
 
-    <main>
-        <!--
-        HTML form for collecting patient data.
-        Each of the inputs is a feature used by the ML Model
-        When the form is submitted the sendData(event) function defined in app.js is triggered
-        instead of needing a page reload.
-        -->
-
-        <form onsubmit="sendData(event)">
-            <label for="pregnancies">Number of Pregnancies</label><br>
-            <input type="number" id="pregnancies" name="pregnancies" step="any" required><br><br>
-
-            <label for="glucose">Glucose Level</label><br>
-            <input type="number" id="glucose" name="glucose" step="any" required><br><br>
+        <main>
+            <!--Form is here-->
+            <form onsubmit="sendData(event)">
+                <label for="pregnancies">Number of Pregnancies</label><br>
+                <input type="number" id="pregnancies" name="pregnancies" step="any"><br><br>
+                
+                <label for="glucose">Glucose Level</label><br>
+                <input type="number" id="glucose" name="glucose" step="any"><br><br>
 
             <label for="bloodPressure">Blood Pressure</label><br>
             <input type="number" id="bloodPressure" name="bloodPressure" step="any" required><br><br>
 
-            <label for="skinThickness">Skin Thickness</label><br>
-            <input type="number" id="skinThickness" name="skinThickness" step="any" required><br><br>
-
-            <label for="insulin">Insulin Level</label><br>
-            <input type="number" id="insulin" name="insulin" step="any" required><br><br>
-
-            <label for="bmi">Body Mass Index</label><br>
-            <input type="number" id="bmi" name="bmi" step="any" required><br><br>
-
-            <label for="dpf">Diabetes Pedigree Function</label><br>
-            <input type="number" id="dpf" name="dpf" step="any" required><br><br>
-
-            <label for="age">Age</label><br>
-            <input type="number" id="age" name="age" step="any" required><br><br>
-
-            <button type="submit">Submit</button>
-        </form>
+                <label for="SkinThickness">Skin Thickness</label><br>
+                <input type="number" id="skinThickness" name="skinThickness" step="any"><br><br>
+             
+                 <label for="insulin">Insulin Level</label><br>
+                 <input type="number" id="insulin" name="insulin" step="any" required><br><br>
+              
+                <label for="bmi">Body Mass Index</label><br>
+                <input type="number" id="bmi" name="bmi" step="any" required><br><br>
+              
+                <label for="dpf">Diabetes Pedigree Function</label><br>
+                 <input type="number" id="dpf" name="dpf" step="any" required><br><br>
+              
+                 <label for="age">Age</label><br>
+                 <input type="number" id="age" name="age" step="any" required><br><br>
+              
+                  <button type="submit">Submit</button>
+            </form>
 
         <h3>Result</h3>
         <pre id="result">Fill the form and click Submit.</pre>
