@@ -1,2 +1,27 @@
+# Ignore virtual environments
 .venv/
+venv/
+env/
+
+# Ignore Python cache folders
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore IDE files
+.vscode/
+.idea/
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore model artifacts (optional)
+models/*.pkl
+
+# Ignore compiled packaged dependencies
+Lib/
+Scripts/
+Include/
+pyvenv.cfg
