@@ -1,22 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: diabetes-frontend-deployment
-  labels:
-    app: diabetes-frontend
+  name: diabetes-frontend-deployment       # Deployment name
 spec:
-  replicas: 1
+  replicas: 1                               # One frontend pod
   selector:
     matchLabels:
-      app: diabetes-frontend
+      app: diabetes-frontend                # Must match template labels
   template:
     metadata:
       labels:
-        app: diabetes-frontend
+        app: diabetes-frontend              # Labels applied to frontend pods
     spec:
       containers:
-        - name: diabetes-frontend
-          image: us-west2-docker.pkg.dev/resolute-clock-479923-c3/diabetes-repo/frontend:v2
-          imagePullPolicy: IfNotPresent
+        - name: frontend
+          image: gcr.io/finalprojml/frontend:latest    # Frontend image in GCR
+          imagePullPolicy: IfNotPresent                # Pull only if needed
           ports:
-            - containerPort: 80
+            - containerPort: 80                        # Frontend serves HTTP on port 80

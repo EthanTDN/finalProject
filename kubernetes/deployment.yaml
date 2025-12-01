@@ -1,25 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: diabetes-api-deployment
-  labels:
-    app: diabetes-api
+  name: diabetes-backend-deployment          # Deployment name
 spec:
-  replicas: 1
+  replicas: 1                                # Number of backend pods
   selector:
     matchLabels:
-      app: diabetes-api
+      app: diabetes-backend                  # Selector matches pod template labels
   template:
     metadata:
       labels:
-        app: diabetes-api
+        app: diabetes-backend                # Labels applied to backend pods
     spec:
       containers:
-        - name: diabetes-api
-          image: us-west2-docker.pkg.dev/resolute-clock-479923-c3/diabetes-repo/backend:v3
-          imagePullPolicy: IfNotPresent
+        - name: backend
+          image: gcr.io/finalprojml/backend:latest   # Backend image stored in GCR
+          imagePullPolicy: IfNotPresent              # Avoid repeated pulls unless needed
           ports:
-            - containerPort: 8000
+            - containerPort: 8000                    # Container exposes port 8000
           env:
-            - name: MODEL_PATH
+            - name: MODEL_PATH                       # Environment variable for ML model path
               value: /app/models/diabetes_model.pkl

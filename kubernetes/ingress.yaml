@@ -1,24 +1,17 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: diabetes-ingress
+  name: diabetes-ingress                      # Ingress object name
   annotations:
-    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.class: "gce"        # Use GCE ingress controller
 spec:
   rules:
     - http:
         paths:
-          - path: /predict
+          - path: /                           # Any request starting at root
             pathType: Prefix
             backend:
               service:
-                name: diabetes-api-service
+                name: diabetes-frontend-service   # Route traffic to frontend service
                 port:
-                  number: 8000
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: diabetes-frontend-service
-                port:
-                  number: 80
+                  number: 80                       # Frontend service port
