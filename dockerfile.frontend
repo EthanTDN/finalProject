@@ -1,0 +1,15 @@
+# Dockerfile.frontend
+FROM nginx:alpine
+
+#Nginx serves files from 
+WORKDIR /usr/share/nginx/html
+
+#remove default nginx content
+RUN rm -rf ./*
+
+#coppies all of the front end files
+COPY frontend/ ./
+
+#Nginx listens on port 80
+EXPOSE 80
+
