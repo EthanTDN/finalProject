@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED=1
 # Set working directory inside the container
 WORKDIR /app
 
-# Install system dependencies (if needed later you can add build tools here)
+# Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
  && rm -rf /var/lib/apt/lists/*
@@ -23,10 +23,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app ./app
 COPY models ./models
 
-# Set environment variable for model path (used in app/main.py)
+# Set environment variable for model path
 ENV MODEL_PATH=/app/models/diabetes_model.pkl
 
-# Expose port 8000 (FastAPI/Uvicorn)
+# Expose port 8000 (for FastAPI/Uvicorn)
 EXPOSE 8000
 
 # Start the FastAPI app using Uvicorn
