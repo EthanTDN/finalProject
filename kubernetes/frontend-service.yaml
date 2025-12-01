@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: diabetes-frontend-service           # Service name
   labels:
-    app: diabetes-frontend                  # Label on the Service (optional but recommended)
+    app: diabetes-frontend                  # Label on the Service
 spec:
   type: ClusterIP                           # Internal cluster service
   selector:
