@@ -1,5 +1,5 @@
 // url of the backend api endpoint to send the data to
-const API_URL = "http://localhost:8000/predict";
+const API_URL = "/predict";
 
 // handles the form submission and sends the patient data to the backend 
 async function sendData(event) {

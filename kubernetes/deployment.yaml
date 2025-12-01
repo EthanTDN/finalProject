@@ -5,7 +5,7 @@ metadata:
   labels:
     app: diabetes-api
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: diabetes-api
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: diabetes-api
-          image: diabetes-api:latest  # for local cluster; for cloud you'd use registry URL
+          image: us-west2-docker.pkg.dev/resolute-clock-479923-c3/diabetes-repo/backend:v1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000

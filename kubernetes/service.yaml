@@ -5,11 +5,10 @@ metadata:
   labels:
     app: diabetes-api
 spec:
-  type: NodePort          # good for local/minikube; in cloud you might use LoadBalancer
+  type: ClusterIP
   selector:
     app: diabetes-api
   ports:
     - protocol: TCP
       port: 8000          # service port inside cluster
       targetPort: 8000    # container port
-      nodePort: 30080     # node port on the host (for local access)

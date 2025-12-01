@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diabetes-frontend-deployment
+  labels:
+    app: diabetes-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: diabetes-frontend
+  template:
+    metadata:
+      labels:
+        app: diabetes-frontend
+    spec:
+      containers:
+        - name: diabetes-frontend
+          image: us-west2-docker.pkg.dev/resolute-clock-479923-c3/diabetes-repo/frontend:v2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
